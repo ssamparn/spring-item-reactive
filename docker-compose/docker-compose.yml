@@ -1,0 +1,23 @@
+---
+version: "3.4"
+
+services:
+  mongo-container:
+    image: mongo:latest
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    volumes:
+      - mongodb_data_container:/data/db
+    networks:
+      - reactive-item-service-network
+
+volumes:
+  mongodb_data_container:
+    driver: local
+
+networks:
+  reactive-item-service-network:
